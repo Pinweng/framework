@@ -12,7 +12,7 @@ catch (Exception $e){
 
 //retrieving database
 
-function getUser(){
+function infoUser(){
 
   global $pdo;
 
@@ -23,7 +23,7 @@ function getUser(){
 
 }
 
-$user = getUser();
+$user = infoUser();
 
 
 //saving data in database
@@ -64,5 +64,16 @@ function updateUsers(){
 
 }
 updateUsers();
+
+
+
+function getUser($userid){
+  global $pdo;
+  if(!empty($pdo)){
+    $user = $pdo->query("SELECT * FROM `user` WHERE `userid` = '$userid'");
+    return $user;
+  }
+}
+
 
 ?>
