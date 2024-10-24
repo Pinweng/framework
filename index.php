@@ -1,12 +1,9 @@
-<?php 
 
-try{
-  $pdo = new PDO('mysql:host=localhost;dbname=users;charset=utf8', 'testus', '12345');
-}
+<?php include "pdo.php"?>
 
-catch (Exception $e){
-  echo "Etwas ist schiefgelauf";
-}
+<div class="user-container">
+  <?php foreach($user AS $singleUser) : ?>
+    <h3><?php echo $singleUser["username"] ?></h3>
+  <?php endforeach ?>
+</div>
 
-
-?>
