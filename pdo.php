@@ -11,24 +11,58 @@ catch (Exception $e){
 }
 
 //retrieving database
-if(!empty($pdo)){
-  $user = $pdo->query("SELECT * FROM `user`");
+
+function getUser(){
+
+  global $pdo;
+
+  if(!empty($pdo)){
+    $user = $pdo->query("SELECT * FROM `user`");
+    return $user;
+  }
 
 }
+
+$user = getUser();
+
 
 //saving data in database
-if (!empty($pdo)){
-  $newUser = $pdo->query("INSERT INTO `user` (`username`, `mail`, `password`) VALUES ('Herbert', 'herbert@mail.de', 'derey67343')");
-}
 
-//delet data from database
-if(!empty($pdo)){
-  $deletuser = $pdo->query("DELETE FROM `user` WHERE `username` = 'Herbert'");
+function neweUser(){
+
+  global $pdo;
+
+  if (!empty($pdo)){
+    $pdo->query("INSERT INTO `user` (`username`, `mail`, `password`) VALUES ('Herbert', 'herbert@mail.de', 'derey67343')");
+  }
+  
 }
+neweUser();
+
+
+//delete data from database
+
+function deleteUser(){
+
+  global $pdo;
+
+  if(!empty($pdo)){
+    $pdo->query("DELETE FROM `user` WHERE `username` = 'Herbert'");
+  }
+
+}
+deleteUser();
 
 //update Database
-if(!empty($pdo)){
-  $updateUser = $pdo->query("UPDATE `user` SET `password` = 'NeuesPassword' WHERE `userid` = 1");
+function updateUsers(){
+
+  global $pdo;
+
+  if(!empty($pdo)){
+    $pdo->query("UPDATE `user` SET `password` = 'NeuesPassword' WHERE `userid` = 1");
+  }
+
 }
+updateUsers();
 
 ?>
