@@ -5,7 +5,7 @@ require_once "User/UserDatabase.php";
 
 $userDB = new \User\UserDatabase();
 
-$user = $userDB->infoUser();
+$user = $userDB->infoUsers();
 ?>
 
 
