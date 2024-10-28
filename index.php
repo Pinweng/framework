@@ -1,5 +1,13 @@
 
-<?php require_once "pdo.php"?>
+<?php 
+require_once "pdo.php";
+require_once "User/UserDatabase.php";
+
+$userDB = new \User\UserDatabase();
+
+$user = $userDB->infoUser();
+?>
+
 
 <div class="user-container">
   <?php foreach($user AS $user) : ?>

@@ -1,12 +1,17 @@
 <?php 
 
 require_once "pdo.php";
+require_once "User/UserDatabase.php";
 
-$userid = getUser($_GET["userid"]);
-foreach($userid AS $userinformation){
-  echo $userinformation["username"];
-  echo "<br>" . $userinformation["mail"];
-  echo "<br>" . $userinformation["bio"];
+$userDB = new \User\UserDatabase();
+
+$user = $userDB->getUser($_GET['userid']);
+
+
+if(!empty($user)){
+  echo $user["username"];
+  echo "<br>" . $user["mail"];
+  echo "<br>" . $user["bio"];
 }
 
 ?>
