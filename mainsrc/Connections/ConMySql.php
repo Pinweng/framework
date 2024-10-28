@@ -1,6 +1,6 @@
 <?php 
 
-namespace Connections;
+namespace App\Connections;
 use PDO;
 
 class ConMYSql{

@@ -1,8 +1,8 @@
 <?php 
 
+use App\User\UserContainer;
 
-require_once "User/UserContainer.php";
-$userContainer = new \User\UserContainer();
+$userContainer = new UserContainer();
 
 $userDB = $userContainer->setUserDatabase();
 

@@ -1,6 +1,6 @@
 <?php 
 
-namespace User;
+namespace App\User;
 use PDO;
 
 class UserDatabase {
