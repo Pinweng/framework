@@ -1,8 +1,10 @@
 <?php 
 
-require_once "pdo.php";
-require_once "User/UserDatabase.php";
-$userDB = new \User\UserDatabase($pdo);
+
+require_once "User/UserContainer.php";
+$userContainer = new \User\UserContainer();
+
+$userDB = $userContainer->setUserDatabase();
 
 $user = $userDB->getUser($_GET['userid']);
 
