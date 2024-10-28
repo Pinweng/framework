@@ -2,7 +2,6 @@
 
 require_once "pdo.php";
 require_once "User/UserDatabase.php";
-
 $userDB = new \User\UserDatabase();
 
 $user = $userDB->getUser($_GET['userid']);
