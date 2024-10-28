@@ -4,13 +4,21 @@ namespace User;
 
 class UserDatabase {
 
+  private $pdo;
+  public function __construct($pdo){
+    $this->pdo = $pdo;
+  }
+  
+    
+  
+
 
 //retrieving database
 
 function infoUsers(){
-  global $pdo;
-  if (!empty($pdo)){
-      $user = $pdo->query("SELECT * FROM `user`");
+  
+  if (!empty($this->pdo)){
+      $user = $this->pdo->query("SELECT * FROM `user`");
   }
   return $user;
 }
@@ -22,10 +30,8 @@ function infoUsers(){
 
 function neweUser(){
 
-  global $pdo;
-
-  if (!empty($pdo)){
-    $pdo->query("INSERT INTO `user` (`username`, `mail`, `password`) VALUES ('Herbert', 'herbert@mail.de', 'derey67343')");
+  if (!empty($this->pdo)){
+    $this->pdo->query("INSERT INTO `user` (`username`, `mail`, `password`) VALUES ('Herbert', 'herbert@mail.de', 'derey67343')");
   }
   
 }
@@ -36,10 +42,10 @@ function neweUser(){
 
 function deleteUser(){
 
-  global $pdo;
 
-  if(!empty($pdo)){
-    $pdo->query("DELETE FROM `user` WHERE `username` = 'Herbert'");
+
+  if(!empty($this->pdo)){
+    $this->pdo->query("DELETE FROM `user` WHERE `username` = 'Herbert'");
   }
 
 }
@@ -48,10 +54,9 @@ function deleteUser(){
 //update Database
 function updateUsers(){
 
-  global $pdo;
 
-  if(!empty($pdo)){
-    $pdo->query("UPDATE `user` SET `password` = 'NeuesPassword' WHERE `userid` = 1");
+  if(!empty($this->pdo)){
+    $this->pdo->query("UPDATE `user` SET `password` = 'NeuesPassword' WHERE `userid` = 1");
   }
 
 }
@@ -59,9 +64,9 @@ function updateUsers(){
 
 // get one speziel user
 function getUser($userid){
-  global $pdo;
-  if(!empty($pdo)){
-    $user = $pdo->query("SELECT * FROM `user` WHERE `userid` = '$userid'");
+
+  if(!empty($this->pdo)){
+    $user = $this->pdo->query("SELECT * FROM `user` WHERE `userid` = '$userid'");
     return $user->fetch();
   }
 }

@@ -3,7 +3,7 @@
 require_once "pdo.php";
 require_once "User/UserDatabase.php";
 
-$userDB = new \User\UserDatabase();
+$userDB = new \User\UserDatabase($pdo);
 
 $user = $userDB->infoUsers();
 ?>
