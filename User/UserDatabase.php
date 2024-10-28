@@ -7,15 +7,14 @@ class UserDatabase {
 
 //retrieving database
 
-function infoUser(){
-
+function infoUsers(){
   global $pdo;
-
-  if(!empty($pdo)){
-    $user = $pdo->query("SELECT * FROM `user`");
-    return $user;
+  $table = "users";
+  if (!empty($pdo)){
+      $users = $pdo->prepare("SELECT * FROM `$table`");
+      $users->execute();
   }
-
+  return $users->fetchAll();
 }
 
 
@@ -65,7 +64,7 @@ function getUser($userid){
   global $pdo;
   if(!empty($pdo)){
     $user = $pdo->query("SELECT * FROM `user` WHERE `userid` = '$userid'");
-    return $user;
+    return $user->fetch();
   }
 }
 
