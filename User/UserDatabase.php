@@ -9,12 +9,10 @@ class UserDatabase {
 
 function infoUsers(){
   global $pdo;
-  $table = "users";
   if (!empty($pdo)){
-      $users = $pdo->prepare("SELECT * FROM `$table`");
-      $users->execute();
+      $user = $pdo->query("SELECT * FROM `user`");
   }
-  return $users->fetchAll();
+  return $user;
 }
 
 
