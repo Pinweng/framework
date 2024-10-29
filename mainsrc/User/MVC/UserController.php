@@ -12,7 +12,7 @@ class UserController{
   }
 
   public function pageload($variblen){
-    $user = $variblen["user"];
+    extract($variblen);
     require_once "Views/user.php";
   }
 
