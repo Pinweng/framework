@@ -18,4 +18,3 @@ $user = $userDB->getUsers();
     
   <?php endforeach ?>
 </div>
-

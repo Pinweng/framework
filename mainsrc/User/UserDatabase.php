@@ -31,7 +31,7 @@ function getUsers(){
 
 //saving data in database
 
-function neweUser(){
+function newUser(){
 
   if (!empty($this->pdo)){
     $this->pdo->query("INSERT INTO `user` (`username`, `mail`, `password`) VALUES ('Herbert', 'herbert@mail.de', 'derey67343')");
