@@ -14,13 +14,8 @@ class UserController{
   public function userprofile($userid){
     $user = $this->userDatabase->getUser($userid);
 
-    if(!empty($user)) : ?>
+    require_once "Views/user.php";
 
-      <h3><?php echo $user->username; ?></h3>
-      <p><?php echo "<br>" . $user["mail"]; ?></p>
-      <p><?php echo "<br>" . $user->bio; ?></p>
-      
-    <?php endif; 
   }
   
 }
