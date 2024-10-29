@@ -9,22 +9,20 @@ class UserModel implements \ArrayAccess{
   public $password;
   public $bio;
 
-  public function offsetExists($offset){
-    //TODO: Implement offset
-    var_dump($offset);
+  public function offsetExists( $offset): bool {
+    return isset($this->$offset);
   }
 
-  public function offsetGet($offset){
-    //TODO offsetGet
-    var_dump("hall");
+  public function offsetGet(mixed $offset): mixed {
+    return $this->$offset ?? null;
   }
 
-  public function offsetSet($offset, $value){
-    //TODO offsetSet
+  public function offsetSet(mixed $offset, mixed $value): void {
+    $this->$offset = $value;
   }
 
-  public function offsetUnset($offset){
-    //TODO Unset
+  public function offsetUnset(mixed $offset): void {
+    unset($this->offset);
   }
 
   public function getStrlen($value){
