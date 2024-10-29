@@ -3,6 +3,7 @@
 namespace App\App;
 
 use App\Connections\ConMYSql;
+use App\User\MVC\UserController;
 use App\User\UserDatabase;
 
 class Container{
@@ -12,6 +13,11 @@ class Container{
 
   public function __construct(){
     $this->builds = [
+      'userController' => function(){
+        return new UserController($this->build("userDatabase"));
+      }, 
+        
+      
       'userDatabase' => function(){
         return new UserDatabase($this->build('pdo'));
       },
@@ -23,18 +29,14 @@ class Container{
   }
   
     
-  
-
-
-
   public function build($objekt) {
     if (isset($this->builds[$objekt])) {
-        // Überprüfen, ob eine Instanz bereits existiert
+        // check if a object allready exists
         if (!empty($this->classInstances[$objekt])) {
             return $this->classInstances[$objekt];
         }
         
-        // Führt die Closure aus, um eine Instanz zu erstellen
+        // create the object
         $this->classInstances[$objekt] = $this->builds[$objekt]();
         return $this->classInstances[$objekt];
     }

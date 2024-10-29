@@ -1,15 +1,8 @@
 <?php 
 require_once "./init.php";
 
-$userDB = $Container->build('userDatabse');
+$userController = $Container->build("userController");
 
-$user = $userDB->getUser($_GET['userid']);
+$userController->userprofil($_GET["userid"]);
 
-
-if(!empty($user)) : ?>
-
-  <h3><?php echo $user->username; ?></h3>
-  <p><?php echo "<br>" . $user["mail"]; ?></p>
-  <p><?php echo "<br>" . $user->bio; ?></p>
-  
-<?php endif; ?>
+?>
