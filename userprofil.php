@@ -6,11 +6,10 @@ $userDB = $Container->build('userDatabse');
 $user = $userDB->getUser($_GET['userid']);
 
 
-if(!empty($user)){
-  echo $user->username;
-  echo "<br>" . $user["mail"];
-  echo "<br>" . $user->bio;
-  echo "<br>" . $user->getStrlen($user->bio);
-}
+if(!empty($user)) : ?>
 
-?>
+  <h3><?php echo $user->username; ?></h3>
+  <p><?php echo "<br>" . $user["mail"]; ?></p>
+  <p><?php echo "<br>" . $user->bio; ?></p>
+  
+<?php endif; ?>
