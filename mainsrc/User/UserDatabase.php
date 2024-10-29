@@ -18,7 +18,7 @@ class UserDatabase {
 
 //retrieving database
 
-function infoUsers(){
+function getUsers(){
   
   if (!empty($this->pdo)){
       $user = $this->pdo->query("SELECT * FROM `user`");

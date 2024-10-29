@@ -1,10 +1,10 @@
 <?php 
+require_once "autoloader.php";
+use App\App\Container;
 
-use App\User\UserContainer;
+$Container = new Container();
 
-$userContainer = new UserContainer();
-
-$userDB = $userContainer->setUserDatabase();
+$userDB = $Container->build('userDatabse');
 
 $user = $userDB->getUser($_GET['userid']);
 

@@ -2,13 +2,13 @@
 <?php 
 
 require_once "./autoloader.php";
-use App\User\UserContainer;
+use App\App\Container;
 
-$userContainer = new UserContainer();
+$Container = new Container();
 
-$userDB = $userContainer->setUserDatabase();
+$userDB = $Container->build('userDatabase');
 
-$user = $userDB->infoUsers();
+$user = $userDB->getUsers();
 ?>
 
 
