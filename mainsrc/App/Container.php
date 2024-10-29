@@ -2,7 +2,7 @@
 
 namespace App\App;
 
-use App\Connections\ConMYSql;
+use App\Connections\ConMySql;
 use App\User\MVC\UserController;
 use App\User\UserDatabase;
 
@@ -22,7 +22,7 @@ class Container{
         return new UserDatabase($this->build('pdo'));
       },
       'pdo' => function(){
-        $connection = new ConMYSql();
+        $connection = new ConMySql();
         return $connection->conToMySql1();
       }
     ];
