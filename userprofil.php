@@ -7,9 +7,10 @@ $user = $userDB->getUser($_GET['userid']);
 
 
 if(!empty($user)){
-  echo $user["username"];
-  echo "<br>" . $user["mail"];
-  echo "<br>" . $user["bio"];
+  echo $user->username;
+  echo "<br>" . $user->mail;
+  echo "<br>" . $user->bio;
+  echo "<br>" . $user->getStrlen($user->bio);
 }
 
 ?>

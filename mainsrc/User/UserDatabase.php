@@ -1,6 +1,8 @@
 <?php 
 
 namespace App\User;
+
+use App\User\MVC\UserModel;
 use PDO;
 
 class UserDatabase {
@@ -16,14 +18,16 @@ class UserDatabase {
   
 
 
-//retrieving database
+  //retrieving database
 
-function getUsers() {
-  if (!empty($this->pdo)) {
-      $stmt = $this->pdo->query("SELECT * FROM user");
-      return $stmt->fetchAll(PDO::FETCH_ASSOC); // return assoziatives Array
-  }
-  return []; // retunr emtpy Array, if not conectet
+  function getUsers() {
+    $table = "user";
+    if (!empty($this->pdo)) {
+        $stmt = $this->pdo->query("SELECT * FROM $table");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
+        return $stmt->fetchAll(PDO::FETCH_CLASS); // Rückgabe des Ergebnisses
+    }
+    return []; // Rückgabe eines leeren Arrays, wenn keine Verbindung besteht
 }
 
 
@@ -31,56 +35,56 @@ function getUsers() {
 
 
 
-//saving data in database
 
-function newUser(){
+  //saving data in database
 
-  if (!empty($this->pdo)){
-    $this->pdo->query("INSERT INTO `user` (`username`, `mail`, `password`) VALUES ('Herbert', 'herbert@mail.de', 'derey67343')");
+  function newUser(){
+    $table = "user";
+    if (!empty($this->pdo)){
+      $this->pdo->query("INSERT INTO `user` (`username`, `mail`, `password`) VALUES ('Herbert', 'herbert@mail.de', 'derey67343')");
+    }
+    
   }
+
+
+
+  //delete data from database
+
+  function deleteUser(){
+
+
+    $table = "user";
+    if(!empty($this->pdo)){
+      $this->pdo->query("DELETE FROM `user` WHERE `username` = 'Herbert'");
+    }
+
+  }
+
+
+  //update Database
+  function updateUsers(){
+
+    $table = "user";
+    if(!empty($this->pdo)){
+      $this->pdo->query("UPDATE `user` SET `password` = 'NeuesPassword' WHERE `userid` = 1");
+    }
+
+  }
+
+
+  // get one speziel user
+  function getUser($userid) {
+    $table = "user";
+    if (!empty($this->pdo)) {
+        $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE userid = :userid");
+        $stmt->execute(['userid' => $userid]);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
+        return $stmt->fetch(PDO::FETCH_CLASS); 
+    }
+    return null; 
+}
+
+
   
 }
-
-
-
-//delete data from database
-
-function deleteUser(){
-
-
-
-  if(!empty($this->pdo)){
-    $this->pdo->query("DELETE FROM `user` WHERE `username` = 'Herbert'");
-  }
-
-}
-
-
-//update Database
-function updateUsers(){
-
-
-  if(!empty($this->pdo)){
-    $this->pdo->query("UPDATE `user` SET `password` = 'NeuesPassword' WHERE `userid` = 1");
-  }
-
-}
-
-
-// get one speziel user
-function getUser($userid) {
-  if (!empty($this->pdo)) {
-      $stmt = $this->pdo->prepare("SELECT * FROM user WHERE userid = :userid");
-      $stmt->execute(['userid' => $userid]);
-      return $stmt->fetch(PDO::FETCH_ASSOC); 
-  }
-  return null;
-}
-
-
-
-
-
-}
-
 ?>
