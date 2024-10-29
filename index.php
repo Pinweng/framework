@@ -1,14 +1,10 @@
 <?php 
 
-require_once "./autoloader.php";
-use App\App\Container;
-
-$Container = new Container();
+require_once "./init.php";
 
 $userDB = $Container->build('userDatabase');
 $users = $userDB->getUsers();
 
-var_dump($users); 
 ?>
 
 <div class="user-container">
