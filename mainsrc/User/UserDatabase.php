@@ -18,13 +18,15 @@ class UserDatabase {
 
 //retrieving database
 
-function getUsers(){
-  
-  if (!empty($this->pdo)){
-      $user = $this->pdo->query("SELECT * FROM `user`");
+function getUsers() {
+  if (!empty($this->pdo)) {
+      $stmt = $this->pdo->query("SELECT * FROM user");
+      return $stmt->fetchAll(PDO::FETCH_ASSOC); // return assoziatives Array
   }
-  return $user;
+  return []; // retunr emtpy Array, if not conectet
 }
+
+
 
 
 
@@ -66,13 +68,16 @@ function updateUsers(){
 
 
 // get one speziel user
-function getUser($userid){
-
-  if(!empty($this->pdo)){
-    $user = $this->pdo->query("SELECT * FROM `user` WHERE `userid` = '$userid'");
-    return $user->fetch();
+function getUser($userid) {
+  if (!empty($this->pdo)) {
+      $stmt = $this->pdo->prepare("SELECT * FROM user WHERE userid = :userid");
+      $stmt->execute(['userid' => $userid]);
+      return $stmt->fetch(PDO::FETCH_ASSOC); 
   }
+  return null;
 }
+
+
 
 
 

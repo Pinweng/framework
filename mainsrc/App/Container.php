@@ -27,15 +27,19 @@ class Container{
 
 
 
-  public function build($objekt){
-    if(isset($this->builds[$objekt])){
-      if(!empty($this->classInstances[$objekt])){
+  public function build($objekt) {
+    if (isset($this->builds[$objekt])) {
+        // Überprüfen, ob eine Instanz bereits existiert
+        if (!empty($this->classInstances[$objekt])) {
+            return $this->classInstances[$objekt];
+        }
+        
+        // Führt die Closure aus, um eine Instanz zu erstellen
+        $this->classInstances[$objekt] = $this->builds[$objekt]();
         return $this->classInstances[$objekt];
-      }
-      $this->classInstances[$objekt] = $this->builds[$objekt]();
-      return $this->classInstances[$objekt];
     }
-  }
+}
+
   
 
 }
