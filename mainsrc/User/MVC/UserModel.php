@@ -13,15 +13,15 @@ class UserModel implements \ArrayAccess{
     return isset($this->$offset);
   }
 
-  public function offsetGet(mixed $offset): mixed {
+  public function offsetGet($offset): mixed {
     return $this->$offset ?? null;
   }
 
-  public function offsetSet(mixed $offset, mixed $value): void {
+  public function offsetSet($offset, $value): void {
     $this->$offset = $value;
   }
 
-  public function offsetUnset(mixed $offset): void {
+  public function offsetUnset($offset): void {
     unset($this->offset);
   }
 
