@@ -2,11 +2,28 @@
 
 require_once "./init.php";
 
-$userController = $Container->build('userController');
-$userController->allUsers();
+$router = $Container->build("router");
 
-$userDB = $Container->build('userDatabase');
-$users = $userDB->getUsers();
+if(isset($_SERVER["PATH_INFO"])){
+    $reqeuest = $_SERVER["PATH_INFO"];
+}
+else{
+    $reqeuest = $_SERVER["REQUEST_URI"];
+}
+
+if ($reqeuest == "/framework/") {
+    $router->add("userController", "allUsers");
+}
+elseif ($reqeuest == "/User/user") {
+    $router->add("userController", "userprofile");
+}
+else{
+    echo "Diese Seite gibt es nicht";
+}
+
+
+var_dump($reqeuest);
+
 
 ?>
 

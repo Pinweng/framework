@@ -13,6 +13,14 @@ class Container{
 
   public function __construct(){
     $this->builds = [
+      'router' => function(){
+        return new Router($this->build("container"));
+      },
+
+      'container' => function(){
+        return new Container();
+      },
+      
       'userController' => function(){
         return new UserController($this->build("userDatabase"));
       }, 
