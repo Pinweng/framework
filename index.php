@@ -22,9 +22,6 @@ else{
 }
 
 
-var_dump($request);
-
-
 ?>
 
 
