@@ -5,16 +5,16 @@ require_once "./init.php";
 $router = $Container->build("router");
 
 if(isset($_SERVER["PATH_INFO"])){
-    $reqeuest = $_SERVER["PATH_INFO"];
+    $request = $_SERVER["PATH_INFO"];
 }
 else{
-    $reqeuest = $_SERVER["REQUEST_URI"];
+    $request = $_SERVER["REQUEST_URI"];
 }
 
-if ($reqeuest == "/framework/") {
+if ($request == "/framework/") {
     $router->add("userController", "allUsers");
 }
-elseif ($reqeuest == "/User/user") {
+elseif ($request == "/User/user") {
     $router->add("userController", "userprofile");
 }
 else{
@@ -22,7 +22,7 @@ else{
 }
 
 
-var_dump($reqeuest);
+var_dump($request);
 
 
 ?>

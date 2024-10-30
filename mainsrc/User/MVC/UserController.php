@@ -26,7 +26,7 @@ class UserController extends AbstractController{
     $user = $this->userDatabase->getUser($userid);
 
     $this->pageload("User", "user",[
-      "user" =>$user
+      "user" => $user
     ]);
   }
   
