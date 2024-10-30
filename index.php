@@ -18,7 +18,7 @@ elseif ($request == "/User/user") {
     $router->add("userController", "userprofile");
 }
 else{
-    echo "Diese Seite gibt es nicht";
+    $router->add("errorController", "errorPage");
 }
 
 

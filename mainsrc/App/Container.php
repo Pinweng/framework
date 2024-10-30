@@ -3,6 +3,7 @@
 namespace App\App;
 
 use App\Connections\ConMySql;
+use App\Error\MVC\ErrorController;
 use App\User\MVC\UserController;
 use App\User\UserDatabase;
 
@@ -13,6 +14,9 @@ class Container{
 
   public function __construct(){
     $this->builds = [
+      'errorController' => function(){
+        return new ErrorController();
+      }, 
       'router' => function(){
         return new Router($this->build("container"));
       },
