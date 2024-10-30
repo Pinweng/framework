@@ -13,7 +13,13 @@ class UserController extends AbstractController{
     $this->userDatabase = $userDatabase;
   }
 
-  
+  public function allUsers(){
+    $user = $this->userDatabase->getUsers();
+
+    $this->pageload("User", "usersview", [
+      'users' => $user
+    ]);
+  }
 
   public function userprofile($userid){
     $user = $this->userDatabase->getUser($userid);
