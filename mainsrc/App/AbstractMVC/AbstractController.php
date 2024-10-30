@@ -2,7 +2,7 @@
 
 namespace App\App\AbstractMVC;
 
-class AbstractController{
+abstract class AbstractController{
 
 public function pageload($dir, $view, $variblen){
     extract($variblen);

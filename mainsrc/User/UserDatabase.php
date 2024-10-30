@@ -2,58 +2,49 @@
 
 namespace App\User;
 
+use App\App\AbstractMVC\AbstractDatabase;
 use App\User\MVC\UserModel;
 use PDO;
 
-class UserDatabase {
+class UserDatabase extends AbstractDatabase {
 
-
-  // hands over pdo 
-  private $pdo;
-  public function __construct(PDO $pdo){
-    $this->pdo = $pdo;
+  public function getTabel()
+  {
+    return "user";
   }
-  
-    
-  
+
+  public function getModel()
+  {
+    return UserModel::class;
+  }
 
 
-  //retrieving database
-
-  function getUsers() {
-    $table = "user";
+ // retrieving all users
+  public function getUsers() {
+    $table = $this->getTabel();
+    $model = $this->getModel();
     if (!empty($this->pdo)) {
         $stmt = $this->pdo->query("SELECT * FROM $table");
-        $stmt->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
-        return $stmt->fetchAll(PDO::FETCH_CLASS); // Rückgabe des Ergebnisses
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $model = $this->getModel());
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
-    return []; // Rückgabe eines leeren Arrays, wenn keine Verbindung besteht
-}
-
-
-
-
-
-
+    return []; 
+  }
 
   //saving data in database
 
   function newUser(){
-    $table = "user";
+    $table = $this->getTabel();
     if (!empty($this->pdo)){
       $this->pdo->query("INSERT INTO `user` (`username`, `mail`, `password`) VALUES ('Herbert', 'herbert@mail.de', 'derey67343')");
     }
     
   }
 
-
-
   //delete data from database
 
   function deleteUser(){
-
-
-    $table = "user";
+    $table = $this->getTabel();
     if(!empty($this->pdo)){
       $this->pdo->query("DELETE FROM `user` WHERE `username` = 'Herbert'");
     }
@@ -63,28 +54,12 @@ class UserDatabase {
 
   //update Database
   function updateUsers(){
-
-    $table = "user";
+    $table = $this->getTabel();
     if(!empty($this->pdo)){
       $this->pdo->query("UPDATE `user` SET `password` = 'NeuesPassword' WHERE `userid` = 1");
     }
 
   }
-
-
-  // get one speziel user
-  function getUser($userid) {
-    $table = "user";
-    if (!empty($this->pdo)) {
-        $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE userid = :userid");
-        $stmt->execute(['userid' => $userid]);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
-        return $stmt->fetch(PDO::FETCH_CLASS); 
-    }
-    return null; 
-}
-
-
   
-}
+  }
 ?>
