@@ -2,13 +2,27 @@
 
 require_once "./init.php";
 
-$userDB = $Container->build('userDatabase');
-$users = $userDB->getUsers();
+$router = $Container->build("router");
+
+if(isset($_SERVER["PATH_INFO"])){
+    $request = $_SERVER["PATH_INFO"];
+}
+else{
+    $request = $_SERVER["REQUEST_URI"];
+}
+
+if ($request == "/framework/") {
+    $router->add("userController", "allUsers");
+}
+elseif ($request == "/User/user") {
+    $router->add("userController", "userprofile");
+}
+else{
+    $router->add("errorController", "errorPage");
+}
+
+
 
 ?>
 
-<div class="user-container">
-  <?php foreach ($users as $user) : ?>
-    <a href="./userprofil.php?userid=<?php echo $user->userid; ?>"><h3><?php echo $user->username; ?></h3></a>
-  <?php endforeach; ?>
-</div>
+
