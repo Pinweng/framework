@@ -6,6 +6,7 @@ use App\Connections\ConMySql;
 use App\Error\MVC\ErrorController;
 use App\Home\IndexDatabase;
 use App\Home\MVC\IndexController;
+use App\Register\MVC\RegisterController;
 use App\User\MVC\UserController;
 use App\User\UserDatabase;
 
@@ -16,6 +17,11 @@ class Container{
 
   public function __construct(){
     $this->builds = [
+
+      'registerController' => function()
+      {
+        return new RegisterController($this->build("userDatabase"));
+      },
 
       'indexController' => function()
       {

@@ -9,11 +9,13 @@ use App\User\UserDatabase;
 class UserController extends AbstractController{
   private $userDatabase;
 
-  public function __construct(UserDatabase $userDatabase){
+  public function __construct(UserDatabase $userDatabase)
+  {
     $this->userDatabase = $userDatabase;
   }
 
-  public function allUsers(){
+  public function allUsers()
+  {
     $user = $this->userDatabase->getUsers();
 
     $this->pageload("User", "usersview", [
@@ -21,7 +23,8 @@ class UserController extends AbstractController{
     ]);
   }
 
-  public function userprofile(){
+  public function userprofile()
+  {
     $userid =  $_GET["userid"] ?? null;
     $user = $this->userDatabase->getUser($userid);
 

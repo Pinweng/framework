@@ -11,6 +11,7 @@ else{
     $request = $_SERVER["REQUEST_URI"];
 }
 
+
 if ($request == "/framework/") 
 {
     $router->add("indexController", "home");
@@ -23,6 +24,10 @@ elseif($request == "/User")
 elseif ($request == "/User=user") 
 {
     $router->add("userController", "userprofile");
+}
+elseif($request == "/Register")
+{
+    $router->add("registerController", "register");
 }
 else
 {
