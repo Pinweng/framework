@@ -29,6 +29,10 @@ elseif($request == "/Register")
 {
     $router->add("registerController", "register");
 }
+elseif($request == "/Login")
+{
+    $router->add("loginController", "loginpage");
+}
 else
 {
     $router->add("errorController", "errorPage");

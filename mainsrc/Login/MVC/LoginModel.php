@@ -2,9 +2,11 @@
 
 namespace App\Login\MVC;
 
-class LoginModel
+use App\App\AbstractMVC\AbstractModel;
+
+class LoginModel extends AbstractModel
 {
-  
+
 }
 
 ?>

@@ -17,13 +17,16 @@ abstract class AbstractDatabase{
 
 
       // get one speziel user
-    function getUser($userid) 
+    function getUser($userid, $mail) 
     {
         $table = $this->getTabel();
         $model = $this->getModel();
         if (!empty($this->pdo)) {
-            $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE userid = :userid");
-            $stmt->execute(['userid' => $userid]);
+            $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE `userid` = :userid OR `mail` = :mail");
+            $stmt->execute([
+                'userid' => $userid,
+                'mail' => $mail
+            ]);
             $stmt->setFetchMode(PDO::FETCH_CLASS, $model = $this->getModel());
             return $stmt->fetch(PDO::FETCH_CLASS); 
         }
@@ -35,7 +38,7 @@ abstract class AbstractDatabase{
         $table = $this->getTabel();
         $model = $this->getModel();
         if (!empty($this->pdo)) {
-            $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE mail = :mail");
+            $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE `mail` = :mail");
             $stmt->execute(['mail' => $mail]);
             $stmt->setFetchMode(PDO::FETCH_CLASS, $model = $this->getModel());
             return $stmt->fetch(PDO::FETCH_CLASS); 

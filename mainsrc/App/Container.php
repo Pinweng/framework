@@ -6,6 +6,8 @@ use App\Connections\ConMySql;
 use App\Error\MVC\ErrorController;
 use App\Home\IndexDatabase;
 use App\Home\MVC\IndexController;
+use App\Login\MVC\LoginAuth;
+use App\Login\MVC\LoginController;
 use App\Register\MVC\RegisterController;
 use App\User\MVC\UserController;
 use App\User\UserDatabase;
@@ -17,6 +19,16 @@ class Container{
 
   public function __construct(){
     $this->builds = [
+
+      'loginController' => function()
+      {
+        return new LoginController($this->build("loginAuth"));
+      },
+
+      'loginAuth' => function()
+      {
+        return new LoginAuth($this->build("userDatabase"));
+      },
 
       'registerController' => function()
       {
