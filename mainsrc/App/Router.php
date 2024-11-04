@@ -22,8 +22,9 @@ class Router{
     public function build($container, $view)
     {
         $container->$view();
+        
     }
-
+    
 }
 
 ?>

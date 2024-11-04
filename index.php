@@ -11,13 +11,21 @@ else{
     $request = $_SERVER["REQUEST_URI"];
 }
 
-if ($request == "/framework/") {
+if ($request == "/framework/") 
+{
+    $router->add("indexController", "home");
+}
+elseif($request == "/User")
+{
     $router->add("userController", "allUsers");
 }
-elseif ($request == "/User/user") {
+
+elseif ($request == "/Users=user") 
+{
     $router->add("userController", "userprofile");
 }
-else{
+else
+{
     $router->add("errorController", "errorPage");
 }
 

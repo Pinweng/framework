@@ -14,6 +14,8 @@ class Container{
 
   public function __construct(){
     $this->builds = [
+
+
       'errorController' => function(){
         return new ErrorController();
       }, 
