@@ -4,6 +4,8 @@ namespace App\App;
 
 use App\Connections\ConMySql;
 use App\Error\MVC\ErrorController;
+use App\Home\IndexDatabase;
+use App\Home\MVC\IndexController;
 use App\User\MVC\UserController;
 use App\User\UserDatabase;
 
@@ -15,6 +17,15 @@ class Container{
   public function __construct(){
     $this->builds = [
 
+      'indexController' => function()
+      {
+        return new IndexController($this->build("indexDatabase"));
+      },
+
+      'indexDatabase' => function()
+      {
+        return new IndexDatabase($this->build("pdo"));
+      },
 
       'errorController' => function(){
         return new ErrorController();
