@@ -25,8 +25,8 @@ class LoginController extends AbstractController
 
                 if ($login)
                 {
+                    //TODO Routing to User
                     header("Location: /User"); 
-                    
                 } 
                 else 
                 {
