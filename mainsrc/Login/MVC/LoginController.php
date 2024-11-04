@@ -1,25 +1,42 @@
-<?php 
+<?php
 
 namespace App\Login\MVC;
 
 use App\App\AbstractMVC\AbstractController;
 
-class LoginController extends AbstractController
+class LoginController extends AbstractController 
 {
-  private $loginAuth;
+    private $loginAuth;
 
-  public function __construct(LoginAuth $loginAuth)
-  {
-    $this->loginAuth = $loginAuth;
-  }
+    public function __construct(LoginAuth $loginAuth)
+    {
+        $this->loginAuth = $loginAuth;
+    }
 
+    public function loginpage()
+    {
+        $error = null;
 
-  public function loginpage()
-  {
-    $this->pageload("Login", "loginpage",[
+        if (!empty($_POST))
+        {
+            $mail = $_POST["mail"];
+            $password = $_POST["password"];
+            $login = $this->loginAuth->checklogin($mail, $password);
 
-    ]);
-  }
+                if ($login)
+                {
+                    header("Location: /User"); 
+                    
+                } 
+                else 
+                {
+                    $error = "Der Login ist fehlgeschlagen";
+                }
+        }
+
+        $this->pageload("Login", "loginpage", [
+            'error' => $error
+        ]);
+    }
+
 }
-
-?>

@@ -1,35 +1,32 @@
-<?php 
+<?php
 
 namespace App\Login\MVC;
 
 use App\User\UserDatabase;
 
-class LoginAuth
-{
-  private $userDatabase;
+class LoginAuth {
 
-  public function __construct(UserDatabase $userDatabase)
-  {
-    $this->userDatabase = $userDatabase;
-  }
+    private $userDatabase;
 
-  public function checkLogin($mail, $password)
-  {
-    $user = $this->userDatabase->getUser("", $mail);
-
-    if($user)
+    public function __construct(UserDatabase $userDatabase)
     {
-      if(password_verify($password, $user->password))
-      {
-          return true;
-      }
-      else
-      {
-        return false;
-      }
+        $this->userDatabase = $userDatabase;
     }
-    return false;
-  }
-}
 
-?>
+    public function checklogin($mail, $password)
+    {
+        $user = $this->userDatabase->getUser("", $mail);
+            if ($user)
+            {
+                if (password_verify($password, $user->password))
+                {
+                return true;
+                } 
+                else 
+                {
+                    echo "User not found";
+                }   
+            }
+            return false;
+    }
+}
