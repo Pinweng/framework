@@ -20,7 +20,7 @@ elseif($request == "/User")
     $router->add("userController", "allUsers");
 }
 
-elseif ($request == "/Users=user") 
+elseif ($request == "/User=user") 
 {
     $router->add("userController", "userprofile");
 }
