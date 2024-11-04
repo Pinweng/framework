@@ -15,12 +15,12 @@ if ($request == "/framework/")
 {
     $router->add("indexController", "home");
 }
-elseif($request == "/User")
+elseif($request == "/Users")
 {
     $router->add("userController", "allUsers");
 }
 
-elseif ($request == "/User=user") 
+elseif ($request == "/Users=user") 
 {
     $router->add("userController", "userprofile");
 }
