@@ -1,6 +1,7 @@
 <?php 
 
-echo "hallo ich bin die startseite";
+require_once __DIR__ . "/../../../App/Design/header.php";
+
 
 ?>
 
@@ -8,3 +9,8 @@ echo "hallo ich bin die startseite";
 <br>
 
 <a href="/User"><button>Zu den Users</button></a>
+<a href="/Login"><button>Login</button></a>
+<a href="/Register"><button>Register</button></a>
+
+
+<?php require_once __DIR__ . "/../../../App/Design/footer.php"; ?>

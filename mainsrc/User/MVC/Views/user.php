@@ -1,3 +1,6 @@
+
+<?php require_once __DIR__ . "/../../../App/Design/header.php";?>
+
 <?php 
 
 if(!empty($user)) : ?>
@@ -9,3 +12,7 @@ if(!empty($user)) : ?>
 <?php endif; 
 
 ?>
+
+
+
+<?php require_once __DIR__ . "/../../../App/Design/footer.php"; ?>

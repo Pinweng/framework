@@ -1,5 +1,5 @@
-<?php 
+<?php require_once __DIR__ . "/../../../App/Design/header.php";?>
 
-echo "Hello from ErrorPage";
+<p>Hello from ErrorPage</p>
 
-?>
+<?php require_once __DIR__ . "/../../../App/Design/footer.php"; ?>

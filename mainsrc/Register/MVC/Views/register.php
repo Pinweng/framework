@@ -1,6 +1,3 @@
-<?php 
+<?php require_once __DIR__ . "/../../../App/Design/header.php";?>
 
-echo "ich bin die register.php
-"
-
-?>
+<?php require_once __DIR__ . "/../../../App/Design/footer.php"; ?>
