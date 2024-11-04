@@ -34,9 +34,23 @@ public function register()
     }
     else
     {
-      $this->userDatabase->newUser($firstname, $lastname, $username, $email, $password);
+      $user = $this->userDatabase->getUserByEmail($email);
+      if(empty($user))
+      {
+
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $this->userDatabase->newUser($firstname, $lastname, $username, $email, $password_hash);
+      }
+      else
+      {
+        $fail = "Ein Account mit dieser Email existiert bereits.";
+      }
+
+      
     }
   }
+
+  
 
   $this->pageload("Register", "register",[
     'fail' => $fail
