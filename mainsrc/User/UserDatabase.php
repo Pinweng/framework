@@ -33,10 +33,19 @@ class UserDatabase extends AbstractDatabase {
 
   //saving data in database
 
-  function newUser(){
+  function newUser($firstname, $lastname, $username, $mail, $password)
+  {
     $table = $this->getTabel();
-    if (!empty($this->pdo)){
-      $this->pdo->query("INSERT INTO `user` (`username`, `mail`, `password`) VALUES ('Herbert', 'herbert@mail.de', 'derey67343')");
+    if (!empty($this->pdo))
+    {
+      $statement = $this->pdo->prepare("INSERT INTO `user` (`firstname`, `lastname`, `username`, `mail`, `password`) VALUES (:firstname, :lastname, :username, :mail, :password)");
+      $statement->execute([
+        'firstname' => $firstname,
+        'lastname' => $lastname,
+        'username' => $username,
+        'mail' => $mail,
+        'password' => $password
+      ]);
     }
     
   }
