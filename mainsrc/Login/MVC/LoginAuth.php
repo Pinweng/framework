@@ -20,7 +20,9 @@ class LoginAuth {
             {
                 if (password_verify($password, $user->password))
                 {
-                return true;
+                    $user = $this->userDatabase->getUser("", $mail);
+                    $_SESSION["userid"] = $user;
+                    return true;
                 } 
                 else 
                 {

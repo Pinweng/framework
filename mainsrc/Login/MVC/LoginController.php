@@ -19,23 +19,27 @@ class LoginController extends AbstractController
 
         if (!empty($_POST))
         {
-            $mail = $_POST["mail"];
-            $password = $_POST["password"];
-            $login = $this->loginAuth->checklogin($mail, $password);
+            $mail = isset($_POST["mail"]) ? $_POST["mail"] : null;
+            $password = isset($_POST["password"]) ? $_POST["password"] : null;
+
+            if ($mail && $password) 
+            {
+                $login = $this->loginAuth->checklogin($mail, $password);
 
                 if ($login)
                 {
-                    header("Location: /User"); 
+                    header("Location: /UserDashboard"); 
                 } 
                 else 
                 {
                     $error = "Der Login ist fehlgeschlagen";
                 }
-        }
+            }
 
-        $this->pageload("Login", "loginpage", [
-            'error' => $error
-        ]);
+            $this->pageload("Login", "loginpage", [
+                'error' => $error
+            ]);
+        }
     }
 
 }
