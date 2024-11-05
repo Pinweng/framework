@@ -41,7 +41,7 @@ elseif($request == "/Login")
 }
 
 #UserDashboard
-elseif($request == "/UserDashboard")
+elseif($request == "/Dashboard")
 {
     $router->add("userDashboardController", "userDashboardMain");
 }

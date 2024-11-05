@@ -1,18 +1,26 @@
-<?php 
+<?php
 
 namespace App\UserDashboard\MVC;
 
 use App\App\AbstractMVC\AbstractController;
 
-class UserDashboardController extends AbstractController
+class UserDashboardController extends AbstractController 
 {
-  public function userDashboardMain()
-  {
-    $this->pageload("UserDashboard", "userDashboardMain",
-    [
-      
-    ]);
-  }
-}
 
-?>
+    public function userDashboardMain()
+    {
+
+        if ($_SESSION["login"])
+        {
+            $this->pageload("UserDashboard", "userDashboardMain", 
+            [
+
+            ]);
+        }
+        else 
+        {
+            header("Location: /Login");
+        }
+
+    }
+}
