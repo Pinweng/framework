@@ -11,6 +11,7 @@ use App\Login\MVC\LoginController;
 use App\Register\MVC\RegisterController;
 use App\User\MVC\UserController;
 use App\User\UserDatabase;
+use App\UserDashboard\MVC\UserDashboardController;
 
 class Container{
 
@@ -19,6 +20,11 @@ class Container{
 
   public function __construct(){
     $this->builds = [
+
+      'userDashboardController' => function()
+      {
+        return new UserDashboardController();
+      },
 
       'loginController' => function()
       {
