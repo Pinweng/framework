@@ -15,27 +15,41 @@ class LoginController extends AbstractController {
 
 
 
-    public function loginpage(){
-
+    public function loginpage()
+    {
         $error = null;
-        if (!empty($_POST))
+    
+        if (!empty($_POST)) 
         {
-            $mail = $_POST["mail"];
-            $password = $_POST["password"];
-            $login = $this->loginAuth->checklogin($mail, $password);
-            if ($login){
-                header("Location: /Dashboard");
+            // Check if 'mail' and 'password' are set in $_POST
+            $mail = isset($_POST["mail"]) ? $_POST["mail"] : null;
+            $password = isset($_POST["password"]) ? $_POST["password"] : null;
+    
+            if ($mail && $password) 
+            {
+                $login = $this->loginAuth->checklogin($mail, $password);
+                if ($login) 
+                {
+                    header("Location: /UserDashboard");
+                    exit(); // Ensure no further code runs after redirection
+                } 
+                else 
+                {
+                    $error = "Der Login ist fehlgeschlagen";
+                }
             } 
             else 
             {
-                $error = "Der Login ist fehlgeschlagen";
+                $error = "Bitte geben Sie sowohl die E-Mail als auch das Passwort ein.";
             }
         }
-
-        if ($_SESSION["login"])
+    
+        // Check if 'login' is set in $_SESSION before accessing it
+        if (isset($_SESSION["login"]) && $_SESSION["login"]) 
         {
-            header("Location: /Dashboard");
-        }
+            header("Location: /UserDashboard");
+            exit();
+        } 
         else 
         {
             $this->pageload("Login", "loginpage", 
@@ -44,5 +58,6 @@ class LoginController extends AbstractController {
             ]);
         }
     }
+    
 
 }
