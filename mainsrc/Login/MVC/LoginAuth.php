@@ -24,8 +24,7 @@ class LoginAuth {
                 } 
                 else 
                 {
-                    //TODO Routing to user
-                    echo "User not found";
+                    return false;
                 }   
             }
             return false;
