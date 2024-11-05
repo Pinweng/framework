@@ -5,7 +5,8 @@
 
 if(!empty($user)) : ?>
 
-  <h3><?php echo $user->username; ?></h3>
+  <h3><?php echo $user->firstname; ?></h3>
+  <h3><?php echo $user->lastname; ?></h3>
   <p><?php echo "<br>" . $user->mail; ?></p>
   <p><?php echo "<br>" . $user->bio; ?></p>
   
